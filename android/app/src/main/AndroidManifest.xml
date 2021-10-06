@@ -1,0 +1,43 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.ctdemo">
+
+    <!-- Required to allow the app to send events and user profile information -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Recommended so that CleverTap knows when to attempt a network call -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <application
+      android:name=".MainApplication"
+      android:label="@string/app_name"
+      android:icon="@mipmap/ic_launcher"
+      android:roundIcon="@mipmap/ic_launcher_round"
+      android:allowBackup="false"
+      android:theme="@style/AppTheme">
+
+      <service android:name=".MyFcmMessageListenerService">
+          <intent-filter>
+            <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service> 
+
+
+      <meta-data
+          android:name="CLEVERTAP_ACCOUNT_ID"
+          android:value="4R6-8Z4-965Z"/>
+      <meta-data
+          android:name="CLEVERTAP_TOKEN"
+          android:value="TEST-41b-624"/>
+
+      <activity
+        android:name=".MainActivity"
+        android:label="@string/app_name"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+        android:launchMode="singleTask"
+        android:windowSoftInputMode="adjustResize">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+      </activity>
+    </application>
+</manifest>
